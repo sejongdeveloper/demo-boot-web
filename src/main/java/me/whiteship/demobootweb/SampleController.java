@@ -23,7 +23,6 @@ public class SampleController {
     }
 
     @GetMapping("/message")
-    @ResponseBody
     public String message(@RequestBody Person person) {
         return "hello person";
     }
