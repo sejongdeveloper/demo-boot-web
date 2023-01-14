@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new GreetingInterceptor());
-        registry.addInterceptor(new AnotherInterceptor());
+        registry.addInterceptor(new GreetingInterceptor()).order(0);
+        registry.addInterceptor(new AnotherInterceptor()).order(-1);
     }
 }
