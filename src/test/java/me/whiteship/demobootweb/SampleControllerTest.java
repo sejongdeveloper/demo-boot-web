@@ -3,7 +3,6 @@ package me.whiteship.demobootweb;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,10 +16,17 @@ class SampleControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    PersonRepository personRepository;
+
     @Test
     void hello() throws Exception {
+        Person person = new Person();
+        person.setName("keesun");
+        Person savedPerson = personRepository.save(person);
+
         this.mockMvc.perform(get("/hello")
-                        .param("name", "keesun"))
+                        .param("id", savedPerson.getId().toString()))
                 .andDo(print())
                 .andExpect(content().string("hello keesun"));
     }
