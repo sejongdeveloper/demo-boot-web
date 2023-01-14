@@ -9,6 +9,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new GreetingInterceptor()).order(0);
-        registry.addInterceptor(new AnotherInterceptor()).order(-1);
+        registry.addInterceptor(new AnotherInterceptor())
+                .addPathPatterns("/hi")
+                .order(-1);
     }
 }
